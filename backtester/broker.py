@@ -5,9 +5,22 @@ class Broker:
 
     def market_order(self, side: str, qty: int, price: float):
 
-        if side == "BUY" and self.cash >= qty * price:
-            self.cash -= qty * price
-            self.position += 1
-        if side == "SELL" and self.position >= 1:
-            self.cash += qty * price
-            self.position -= 1
+        try:
+            if side == "BUY":
+                total_cost = qty * price
+                if self.cash < total_cost:
+                    raise ValueError(f"Insufficient cash to buy {qty} units at {price:.2f}: available {self.cash:.2f}")
+                self.cash -= total_cost
+                self.position += qty
+
+            elif side == "SELL":
+                if self.position < qty:
+                    raise ValueError(f"Insufficient position to sell {qty} units: available position is {self.position}")
+                self.cash += qty * price
+                self.position -= qty
+
+            else:
+                raise ValueError(f"Unknown order side: {side}")
+
+        except ValueError as e:
+            print(f"Order failed: {e}")

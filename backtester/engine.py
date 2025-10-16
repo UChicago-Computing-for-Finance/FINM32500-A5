@@ -10,9 +10,12 @@ class Backtester:
         signals = self.strategy.signals(prices)
 
         for timestamp, signal in signals.items():
-            if signal == 1:
-                self.broker.market_order("BUY", 1, prices[timestamp])
-            elif signal == -1:
-                self.broker.market_order("SELL", 1, prices[timestamp])
-            else:
-                pass
+            try:
+                if signal == 1:
+                    self.broker.market_order("BUY", 1, prices[timestamp])
+                elif signal == -1:
+                    self.broker.market_order("SELL", 1, prices[timestamp])
+                else:
+                    pass
+            except ValueError as e:
+                print(f"Order failed at {timestamp}: {e}")

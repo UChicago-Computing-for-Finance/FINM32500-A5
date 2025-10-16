@@ -8,6 +8,10 @@
 - The price loader class is responsible for loading the price data.
 - The test suite is responsible for testing the broker, engine, and strategy classes.
 
+## Git Actions
+
+![Coverage Report](gitaction.png)
+
 ## Coverage Report
 
 ![Coverage Report](cov.png)

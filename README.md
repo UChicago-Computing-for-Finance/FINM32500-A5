@@ -16,20 +16,6 @@
 
 ![Coverage Report](cov.png)
 
-
-Name                     Stmts   Miss  Cover
---------------------------------------------
-backtester/__init__.py       0      0   100%
-backtester/broker.py        21      0   100%
-backtester/engine.py        23      1    96%
-backtester/strategy.py      20      0   100%
-tests/conftest.py           36      0   100%
-tests/test_broker.py        68      0   100%
-tests/test_engine.py        88      0   100%
-tests/test_strategy.py      57      0   100%
---------------------------------------------
-TOTAL                      313      1    99%
-
 ### Test Execution Commands
 
 **Run all tests:**

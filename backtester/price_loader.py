@@ -1,14 +1,12 @@
 import csv
 from datetime import datetime
+import pandas as pd
 
 class PriceLoader:
     def __init__(self):
-        self._market_data = []
+        self._market_data: pd.Series = pd.Series()
 
-    def load_data(self, csv_path: str):
-            """Read market data from a CSV file, load as a pandas.Series (timestamp index, price values), and return it."""
-            import pandas as pd  # pandas is required for this functionality
-
+    def load_data(self, csv_path: str) -> pd.Series:
             data = []
             timestamps = []
             with open(csv_path, "r", newline="") as file:

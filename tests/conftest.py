@@ -28,6 +28,13 @@ def prices_with_jump():
     return pd.Series(prices)
 
 @pytest.fixture
+def prices_with_dump():
+    # deterministic rising series with a dump
+    prices = np.linspace(120, 100, 200)
+    prices[150:] -= 10
+    return pd.Series(prices)
+
+@pytest.fixture
 def prices_short():
     # short series to test edge cases
     return pd.Series([100, 101, 102, 103, 104])
@@ -36,3 +43,10 @@ def prices_short():
 def prices_constant():
     # constant price series to test zero volatility
     return pd.Series([100] * 200)
+
+@pytest.fixture
+def prices_with_NaNs():
+    # price series with NaN values
+    prices = np.linspace(100, 120, 200)
+    prices[::10] = np.nan
+    return pd.Series(prices)
